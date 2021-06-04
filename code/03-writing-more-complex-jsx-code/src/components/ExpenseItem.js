@@ -1,3 +1,10 @@
+/* Rule - you must only return one root element-or js snippet
+ than side-by-side element
+  - Why? 
+  - Workaround - cover it by another div
+  - For readability - you cover it by bracket & format
+*/
+
 function ExpenseItem() {
   return (
     <div>
@@ -10,4 +17,5 @@ function ExpenseItem() {
   );
 }
 
+//
 export default ExpenseItem;

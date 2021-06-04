@@ -23,3 +23,5 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+code/*/node_modules
+code/react-vs-vanilla-js-example/react/node_modules

@@ -1,6 +1,8 @@
 import './ExpenseItem.css';
 
-function ExpenseItem() {
+ // we use className than class - remember we are using jsx
+  // class is reserved
+function ExpenseItem() { 
   return (
     <div className="expense-item">
       <div>March 28th 2021</div>

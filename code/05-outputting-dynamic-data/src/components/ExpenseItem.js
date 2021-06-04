@@ -1,9 +1,11 @@
 import './ExpenseItem.css';
 
 function ExpenseItem() {
+  // this is regular javascript 
+  // you can replace hard coded data with {dynamic placeholder}.
   const expenseDate = new Date(2021, 2, 28);
   const expenseTitle = 'Car Insurance';
-  const expenseAmount = 294.67;
+  const expenseyAmount = 294.67;
 
   return (
     <div className='expense-item'>

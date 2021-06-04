@@ -1,5 +1,4 @@
-import React from 'react';
-
+import React from 'react'; 
 import Expenses from './components/Expenses/Expenses';
 
 const App = () => {
@@ -25,6 +24,7 @@ const App = () => {
     },
   ];
 
+  // alternative to jsx - this is created under the hood
   // return React.createElement(
   //   'div',
   //   {},
