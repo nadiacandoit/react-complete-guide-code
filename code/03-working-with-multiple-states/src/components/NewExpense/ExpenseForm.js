@@ -3,20 +3,46 @@ import React, { useState } from 'react';
 import './ExpenseForm.css';
 
 const ExpenseForm = () => {
-  const [enteredTitle, setEnteredTitle] = useState('');
-  const [enteredAmount, setEnteredAmount] = useState('');
-  const [enteredDate, setEnteredDate] = useState('');
-
+  // const [enteredTitle, setEnteredTitle] = useState('');
+  // const [enteredAmount, setEnteredAmount] = useState('');
+  // const [enteredDate, setEnteredDate] = useState('');
+const [userInput, setUserInput] = useState({
+  enteredTitle: '',
+  enteredAmount: '',
+  enteredDate: ''
+})
   const titleChangeHandler = (event) => {
-    setEnteredTitle(event.target.value);
+   // setEnteredTitle(event.target.value);
+   setUserInput({
+    ...userInput,
+    enteredTitle: event.target.value,
+   })
   };
 
   const amountChangeHandler = (event) => {
-    setEnteredAmount(event.target.value);
+   // setEnteredAmount(event.target.value);
+    setUserInput({
+      ...userInput,
+      enteredAmount: event.target.value,
+    })
   };
 
   const dateChangeHandler = (event) => {
-    setEnteredDate(event.target.value);
+  //  setEnteredDate(event.target.value);
+  /* When using object you need to maintain old states are not lost. 
+    we use spread Op. for take previous state and overiding the target. 
+  */
+  // setUserInput({
+  //   ...userInput,
+  //   enteredDate: event.target.value,
+  // })
+
+  // Theoretically this is safer to ensure 
+  // to be operated based on latest snapshot. 
+  setUserInput((prevState) => {
+    return { ...prevState, enteredTitle: event.target.value };
+  })
+
   };
 
   return (

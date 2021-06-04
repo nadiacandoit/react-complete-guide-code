@@ -40,6 +40,7 @@ const ExpenseForm = () => {
   };
 
   const submitHandler = (event) => {
+    // so that it does not reloads every time 
     event.preventDefault();
     
     const expenseData = {

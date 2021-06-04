@@ -48,12 +48,16 @@ const ExpenseForm = () => {
       date: new Date(enteredDate),
     };
 
+    // clear the forms
     console.log(expenseData);
     setEnteredTitle('');
     setEnteredAmount('');
     setEnteredDate('');
   };
 
+  // node input value = {enteredTitle} 
+  // This allows two way binding - gather uesr input & change it
+  // nice to work with form!
   return (
     <form onSubmit={submitHandler}>
       <div className='new-expense__controls'>

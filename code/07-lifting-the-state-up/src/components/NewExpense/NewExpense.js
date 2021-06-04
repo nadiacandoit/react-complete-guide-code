@@ -13,6 +13,7 @@ const NewExpense = (props) => {
   };
 
   return (
+    // expenseForm points at function 'saveExpenseDataHandler'
     <div className='new-expense'>
       <ExpenseForm onSaveExpenseData={saveExpenseDataHandler} />
     </div>
