@@ -12,6 +12,15 @@ const Expenses = (props) => {
     setFilteredYear(selectedYear);
   };
 
+  const filterByYear = (element) => {
+    return element.date.getFullYear().toString() === filteredYear;
+  }
+  const filteredExpense = filterByYear(expense);
+  /*
+    by adding key, which is unique for each items, 
+    we can act react to add only needed data to the right place 
+  
+   */
   return (
     <div>
       <Card className='expenses'>
@@ -19,14 +28,14 @@ const Expenses = (props) => {
           selected={filteredYear}
           onChangeFilter={filterChangeHandler}
         />
-        {props.items.map((expense) => (
-          <ExpenseItem
-            key={expense.id}
-            title={expense.title}
-            amount={expense.amount}
-            date={expense.date}
-          />
-        ))}
+        {props.items.map((filteredExpense) => (
+            <ExpenseItem
+              key={expense.id}
+              title={expense.title}
+              amount={expense.amount}
+              date={expense.date}
+            />
+       ))}
       </Card>
     </div>
   );

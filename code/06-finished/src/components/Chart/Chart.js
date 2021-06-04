@@ -8,6 +8,8 @@ const Chart = (props) => {
   const totalMaximum = Math.max(...dataPointValues);
 
   return (
+    // plots the value in relation to the max value 
+    // remember the key to render it efficiently! 
     <div className='chart'>
       {props.dataPoints.map((dataPoint) => (
         <ChartBar

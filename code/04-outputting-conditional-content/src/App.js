@@ -34,6 +34,10 @@ const App = () => {
     });
   };
 
+  const [shouldOpenForm, setShouldOpenForm] = useState(false);
+  const addOpenFormHandler = (selection) => {
+    setShouldOpenForm(selection);
+  };
   // return React.createElement(
   //   'div',
   //   {},
@@ -43,7 +47,7 @@ const App = () => {
 
   return (
     <div>
-      <NewExpense onAddExpense={addExpenseHandler} />
+      <NewExpense shouldOpenForm={shouldOpenForm} onOpenForm={addOpenFormHandler} onAddExpense={addExpenseHandler} />
       <Expenses items={expenses} />
     </div>
   );

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 import ExpenseForm from './ExpenseForm';
 import './NewExpense.css';
@@ -12,11 +12,32 @@ const NewExpense = (props) => {
     props.onAddExpense(expenseData);
   };
 
-  return (
-    <div className='new-expense'>
-      <ExpenseForm onSaveExpenseData={saveExpenseDataHandler} />
-    </div>
-  );
+  const [shouldOpenForm, setShouldOpenForm] = useState(false);
+  const shouldOpenFormHandler = () => {
+    //setExpenseFormOpen()
+    console.log("button clicked");
+    setShouldOpenForm(true);
+    //props.addOpenFormHandler(true);
+  };
+
+  const addCloseFormHandler = () => {
+    console.log("cancel called");
+    setShouldOpenForm(false);
+  };
+
+  if (!(shouldOpenForm)) {
+    return (
+      <div className='new-expense'>
+        <button onClick={shouldOpenFormHandler}>Add New Expense</button>
+      </div>
+      );
+  } else {
+    return (
+      <div className='new-expense'>
+        <ExpenseForm onCloseForm={addCloseFormHandler} onSaveExpenseData={saveExpenseDataHandler} />
+      </div>
+    );
+  }
 };
 
 export default NewExpense;

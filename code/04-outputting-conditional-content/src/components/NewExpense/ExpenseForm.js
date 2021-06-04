@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import './ExpenseForm.css';
 
 const ExpenseForm = (props) => {
+
   const [enteredTitle, setEnteredTitle] = useState('');
   const [enteredAmount, setEnteredAmount] = useState('');
   const [enteredDate, setEnteredDate] = useState('');
@@ -39,6 +40,10 @@ const ExpenseForm = (props) => {
     // });
   };
 
+  const onCloseFormHandler = () => {
+    props.onCloseForm();
+  }
+
   const submitHandler = (event) => {
     event.preventDefault();
 
@@ -54,6 +59,7 @@ const ExpenseForm = (props) => {
     setEnteredDate('');
   };
 
+  
   return (
     <form onSubmit={submitHandler}>
       <div className='new-expense__controls'>
@@ -87,10 +93,12 @@ const ExpenseForm = (props) => {
         </div>
       </div>
       <div className='new-expense__actions'>
+        <button onClick={onCloseFormHandler}>Cancel</button>
         <button type='submit'>Add Expense</button>
       </div>
     </form>
   );
+
 };
 
 export default ExpenseForm;
