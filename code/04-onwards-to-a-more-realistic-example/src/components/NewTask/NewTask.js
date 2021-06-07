@@ -1,9 +1,58 @@
-import { useState } from 'react';
-
 import Section from '../UI/Section';
+
+import useHttpFetch from '../../hooks/use-httpFetch';
 import TaskForm from './TaskForm';
 
 const NewTask = (props) => {
+
+  const firebaseurl = 'PLACEHOLDER';
+
+  const { isLoading, error, sendRequest: sendTaskRequest } = useHttpFetch();
+
+//javascript binding 
+  const applyData = (taskText, data) => {    
+    const generatedId = data.name; // firebase-specific => "name" contains generated id
+    const createdTask = { id: generatedId, text: taskText };
+
+    props.onAddTask(createdTask);
+  }
+
+  const enterTaskHandler = async (taskText) => {
+
+    /*
+    const applyData = (data) => {
+      const generatedId = data.name; // firebase-specific => "name" contains generated id
+      const createdTask = { id: generatedId, text: taskText };
+
+      props.onAddTask(createdTask);
+    }*/
+
+    sendTaskRequest({
+      url: firebaseurl,
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ text: taskText }),
+    }, 
+    //applyData(taskText)
+    applyData.bind(null, taskText)
+    );
+  };
+
+  return (
+    <Section>
+      <TaskForm onEnterTask={enterTaskHandler} loading={isLoading} />
+      {error && <p>{error}</p>}
+    </Section>
+  );
+
+  /*
+  useEffect(() => {
+    fetchTasks(requestConfig, transformTasks); // 
+  }, [fetchTasks]); 
+*/
+  /*
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -11,8 +60,8 @@ const NewTask = (props) => {
     setIsLoading(true);
     setError(null);
     try {
-      const response = await fetch(
-        'https://react-http-6b4a6.firebaseio.com/tasks.json',
+      const response = await fetch
+        (firebaseurl+'tasks.json',
         {
           method: 'POST',
           body: JSON.stringify({ text: taskText }),
@@ -37,13 +86,7 @@ const NewTask = (props) => {
     }
     setIsLoading(false);
   };
-
-  return (
-    <Section>
-      <TaskForm onEnterTask={enterTaskHandler} loading={isLoading} />
-      {error && <p>{error}</p>}
-    </Section>
-  );
+*/
 };
 
 export default NewTask;

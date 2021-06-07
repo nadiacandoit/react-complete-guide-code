@@ -1,9 +1,53 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback} from 'react';
+import useHttpFetch from './hooks/use-httpFetch';
 
 import Tasks from './components/Tasks/Tasks';
 import NewTask from './components/NewTask/NewTask';
 
 function App() {
+
+  const [tasks, setTasks] = useState([]);
+ 
+  // write configuration
+  const requestConfig = {
+    url: 'PLACEHOLDER'
+  };
+
+  // function which receives data. 
+  /*
+  const transformTasks = useCallback((taskObj) => {
+    const loadedTasks = [];
+
+    for (const taskKey in taskObj) {
+      loadedTasks.push({ id: taskKey, text: taskObj[taskKey].text });
+    }
+
+    setTasks(loadedTasks);
+  }, []);
+  */
+  const transformTasks = (taskObj) => {
+    const loadedTasks = [];
+
+    for (const taskKey in taskObj) {
+      loadedTasks.push({ id: taskKey, text: taskObj[taskKey].text });
+    }
+
+    setTasks(loadedTasks);
+  };
+
+  const taskAddHandler = (task) => {
+    setTasks((prevTasks) => prevTasks.concat(task));
+  };
+
+  //give alias
+  const {isLoading, error, sendRequest: fetchTasks} = useHttpFetch();
+
+  useEffect(() => {
+    fetchTasks(requestConfig, transformTasks); // 
+  }, [fetchTasks]); 
+  //dependency needs to be added here to rerun the effect whatever 
+
+  /*
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const [tasks, setTasks] = useState([]);
@@ -13,7 +57,7 @@ function App() {
     setError(null);
     try {
       const response = await fetch(
-        'https://react-http-6b4a6.firebaseio.com/tasks.json'
+        'https://react-http-a34b0-default-rtdb.firebaseio.com/tasks.json'
       );
 
       if (!response.ok) {
@@ -34,14 +78,7 @@ function App() {
     }
     setIsLoading(false);
   };
-
-  useEffect(() => {
-    fetchTasks();
-  }, []);
-
-  const taskAddHandler = (task) => {
-    setTasks((prevTasks) => prevTasks.concat(task));
-  };
+*/
 
   return (
     <React.Fragment>
