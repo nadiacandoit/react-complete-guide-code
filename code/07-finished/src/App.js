@@ -11,6 +11,9 @@ function App() {
     setListTitle('New Title');
   }, []);
 
+  //To ensure [5, 3, 1, 10, 9] is not newly created! 
+  // use useMemo to save object! - memoized
+  // storing data would occupy memory, and storing function itself too. 
   const listItems = useMemo(() => [5, 3, 1, 10, 9], []);
 
   return (

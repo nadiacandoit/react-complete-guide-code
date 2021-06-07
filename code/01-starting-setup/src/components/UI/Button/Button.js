@@ -3,7 +3,9 @@ import React from 'react';
 import classes from './Button.module.css';
 
 const Button = (props) => {
-  return (
+  console.log("button RUNNING");
+
+  return (    
     <button
       type={props.type || 'button'}
       className={`${classes.button} ${props.className}`}
@@ -15,4 +17,10 @@ const Button = (props) => {
   );
 };
 
-export default Button;
+// function passed to btn is created every time app is executed. 
+// React.memo compare passed props by regular comparision operators (===)
+// In javascript, === works only for primitive values. 
+// Things like function, and array won't work this way. 
+
+// export default Button;
+export default React.memo(Button);
