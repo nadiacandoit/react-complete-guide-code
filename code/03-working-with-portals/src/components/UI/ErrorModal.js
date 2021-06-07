@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom'; // ReactDOM is an adaptor for browser
 
 import Card from './Card';
 import Button from './Button';
@@ -24,6 +24,12 @@ const ModalOverlay = (props) => {
     </Card>
   );
 };
+
+/* createPortal takes two argument2
+ (1) - React node to be rendered
+ (2) - DOM element need to be rendered
+    check index.html 
+*/
 
 const ErrorModal = (props) => {
   return (
