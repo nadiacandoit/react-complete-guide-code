@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import Button from '../../UI/Button/Button';
 import './CourseInput.css';
 
+// & is pseudo selector 
 const FormControl = styled.div`
   margin: 0.5rem 0;
 
