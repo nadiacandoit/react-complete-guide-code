@@ -5,6 +5,7 @@ import classes from './UserFinder.module.css';
 import UsersContext from '../store/users-context';
 
 class UserFinder extends Component {
+  // this can be only set once! 
   static contextType = UsersContext;
 
   constructor() {

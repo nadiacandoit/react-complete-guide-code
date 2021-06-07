@@ -18,12 +18,14 @@ class UserFinder extends Component {
     };
   }
 
+  // When it is rendered for the first time. 
   componentDidMount() {
     // Send http request...
     this.setState({ filteredUsers: DUMMY_USERS });
   }
 
   componentDidUpdate(prevProps, prevState) {
+    // To prevent infinite loop check change in searchTerm
     if (prevState.searchTerm !== this.state.searchTerm) {
       this.setState({
         filteredUsers: DUMMY_USERS.filter((user) =>

@@ -1,5 +1,8 @@
 import { Component } from 'react';
 
+// It is a regular compoenent
+// which implements 'componentDidCatch' lifecycle method 
+// where 
 class ErrorBoundary extends Component {
   constructor() {
     super();
