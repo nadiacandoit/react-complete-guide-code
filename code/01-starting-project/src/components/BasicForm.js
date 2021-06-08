@@ -11,7 +11,7 @@ const BasicForm = (props) => {
           <input type='text' id='name' />
         </div>
       </div>
-      <div className='form-control'>
+      <divnpm='form-control'>
         <label htmlFor='name'>E-Mail Address</label>
         <input type='text' id='name' />
       </div>
