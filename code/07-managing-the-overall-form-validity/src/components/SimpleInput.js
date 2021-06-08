@@ -43,6 +43,10 @@ const SimpleInput = (props) => {
       return;
     }
     */
+   
+    if(!formIsValid){
+      return;
+    }
 
     console.log(enteredName + ":" + enteredEmail);
 
