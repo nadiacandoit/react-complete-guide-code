@@ -1,36 +1,52 @@
+import React, { useEffect, useState } from 'react';
+import useHttp from '../../hooks/useHttp';
+
 import Card from '../UI/Card';
 import MealItem from './MealItem/MealItem';
 import classes from './AvailableMeals.module.css';
 
-const DUMMY_MEALS = [
-  {
-    id: 'm1',
-    name: 'Sushi',
-    description: 'Finest fish and veggies',
-    price: 22.99,
-  },
-  {
-    id: 'm2',
-    name: 'Schnitzel',
-    description: 'A german specialty!',
-    price: 16.5,
-  },
-  {
-    id: 'm3',
-    name: 'Barbecue Burger',
-    description: 'American, raw, meaty',
-    price: 12.99,
-  },
-  {
-    id: 'm4',
-    name: 'Green Bowl',
-    description: 'Healthy...and green...',
-    price: 18.99,
-  },
-];
-
 const AvailableMeals = () => {
-  const mealsList = DUMMY_MEALS.map((meal) => (
+  const mealDataURL = 'PLACEHOLDER';
+
+  const [mealsList, setMealsList] = useState([]);
+  
+  const {
+    isLoading,
+    error,
+    sendRequest: fetchMealList,
+  } = useHttp();
+
+  useEffect(() => {
+  
+    const transformMeals = ((meals) => {
+      if(meals === null) {
+        console.log('database is empty');
+        return;
+      }
+
+      const loadedMealslist = [];
+  
+      for (const mealKey in meals) {
+        loadedMealslist.push({ 
+          id: "m"+mealKey, 
+          name: meals[mealKey].name,
+          description: meals[mealKey].description, 
+          price: meals[mealKey].price });
+      }
+      
+      //console.log(loadedMealslist);
+      setMealsList(loadedMealslist);
+    });
+    
+    fetchMealList(
+      { url: mealDataURL },
+      transformMeals
+    );
+  }, [fetchMealList]);
+
+
+  //TODO: Fetch from the http request in the db. 
+  const mealsItemList = mealsList.map((meal) => (
     <MealItem
       key={meal.id}
       id={meal.id}
@@ -40,11 +56,23 @@ const AvailableMeals = () => {
     />
   ));
 
+  let content;
+  if (error !== null) {
+    content = <p>{error.message}</p>;
+  } else {
+    console.log(error);    
+  }
+
+  if (isLoading) {
+    content = <section><p>Loading...</p></section>;
+  }else {
+    content = <Card><ul>{mealsItemList}</ul></Card>;
+  }
+
+  
   return (
     <section className={classes.meals}>
-      <Card>
-        <ul>{mealsList}</ul>
-      </Card>
+        {content}
     </section>
   );
 };
