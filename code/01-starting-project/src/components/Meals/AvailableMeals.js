@@ -6,8 +6,8 @@ import MealItem from './MealItem/MealItem';
 import classes from './AvailableMeals.module.css';
 
 const AvailableMeals = () => {
-  const mealDataURL = 'PLACEHOLDER';
-
+  const mealDataURL = 'https://react-http-a34b0-default-rtdb.firebaseio.com/meals.json';
+ 
   const [mealsList, setMealsList] = useState([]);
   
   const {
