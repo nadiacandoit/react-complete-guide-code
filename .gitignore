@@ -23,3 +23,7 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+code/*/node_modules
+code/*/.next
+code/14-preparing-paths-getstaticpaths/package-lock.json
+code/*/package-lock.json

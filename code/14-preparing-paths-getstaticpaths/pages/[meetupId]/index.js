@@ -11,7 +11,9 @@ function MeetupDetails() {
   );
 }
 
+// for which dynamic value should it generate...  
 export async function getStaticPaths() {
+  //fallback allows you to pregenerate some (=true)
   return {
     fallback: false,
     paths: [
